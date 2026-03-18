@@ -18,84 +18,78 @@
  </head>
  <body class="h-full bg-slate-100 overflow-auto">
   <div id="app" class="h-full w-full flex flex-col">
-   
+
    <header class="bg-gradient-to-r from-[#E35205] to-[#f47321] text-white shadow-lg flex-shrink-0">
-    <div class="px-6 py-4 flex items-center justify-between">
-     <div class="flex items-center gap-4">
-      <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md">
-       <svg class="w-8 h-8 text-[#E35205]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-      </div>
-      <div>
-       <h1 class="text-2xl font-bold tracking-wide">NS KMITL PATIENT DATA</h1>
-       <p class="text-teal-100 text-sm italic">Smart EHR System for Virtual Learning</p>
-      </div>
+    <div class="px-6 py-4 flex items-center gap-4">
+     <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md">
+      <svg class="w-8 h-8 text-[#E35205]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
      </div>
-     <!-- ปุ่มตั้งค่า API Key -->
-     <button onclick="showSettingsModal()" class="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-xl font-bold text-sm transition-all">
-       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
-       ตั้งค่า Sheets
-     </button>
+     <div>
+      <h1 class="text-2xl font-bold tracking-wide">NS KMITL PATIENT DATA</h1>
+      <p class="text-orange-100 text-sm italic">Smart EHR System for Virtual Learning</p>
+     </div>
     </div>
    </header>
 
    <div class="flex flex-1 overflow-hidden">
     <aside class="w-64 bg-white shadow-lg flex-shrink-0 overflow-y-auto z-10">
      <nav class="py-4">
-      <button onclick="showSection('dashboard')" id="btn-dashboard" class="sidebar-item active w-full flex items-center gap-3 px-6 py-4 text-slate-700 font-bold transition-all">แดชบอร์ด</button> 
-      <button onclick="showSection('patients')" id="btn-patients" class="sidebar-item w-full flex items-center gap-3 px-6 py-4 text-slate-700 font-bold transition-all">รายชื่อผู้ป่วย</button> 
+      <button onclick="showSection('dashboard')" id="btn-dashboard" class="sidebar-item active w-full flex items-center gap-3 px-6 py-4 text-slate-700 font-bold transition-all">แดชบอร์ด</button>
+      <button onclick="showSection('patients')" id="btn-patients" class="sidebar-item w-full flex items-center gap-3 px-6 py-4 text-slate-700 font-bold transition-all">รายชื่อผู้ป่วย</button>
      </nav>
     </aside>
 
     <main class="flex-1 overflow-y-auto p-6 relative">
+
      <section id="section-dashboard" class="fade-in">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-        <p class="text-slate-500 text-sm font-bold">จำนวนผู้ป่วยทั้งหมด</p>
+        <p class="text-slate-500 text-sm font-bold">ผู้ป่วยทั้งหมด</p>
         <h3 class="text-4xl font-black text-teal-600 mt-2" id="dash-count">0</h3>
        </div>
-       <!-- สถานะการเชื่อมต่อ Sheets -->
-       <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 md:col-span-3">
-        <p class="text-slate-500 text-sm font-bold mb-2">สถานะการเชื่อมต่อ Google Sheets</p>
-        <div id="connection-status" class="flex items-center gap-2">
-          <span class="w-3 h-3 rounded-full bg-slate-300"></span>
-          <span class="text-slate-500 text-sm font-medium">ยังไม่ได้ตั้งค่า — กรุณากดปุ่ม "ตั้งค่า Sheets" เพื่อใส่ API Key</span>
-        </div>
+       <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <p class="text-slate-500 text-sm font-bold">วิกฤต</p>
+        <h3 class="text-4xl font-black text-red-500 mt-2" id="dash-critical">0</h3>
+       </div>
+       <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <p class="text-slate-500 text-sm font-bold">เฝ้าระวัง</p>
+        <h3 class="text-4xl font-black text-amber-500 mt-2" id="dash-watch">0</h3>
+       </div>
+       <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <p class="text-slate-500 text-sm font-bold">ปกติ</p>
+        <h3 class="text-4xl font-black text-green-500 mt-2" id="dash-normal">0</h3>
        </div>
       </div>
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-       <h2 class="text-xl font-bold text-slate-800 mb-6 border-b pb-4">รายการผู้ป่วยล่าสุด</h2>
+       <h2 class="text-xl font-bold text-slate-800 mb-6 border-b pb-4">รายการผู้ป่วยทั้งหมด</h2>
        <div class="space-y-4" id="recent-patients"></div>
       </div>
      </section>
 
      <section id="section-patients" class="hidden fade-in">
-      <div class="flex items-center justify-between mb-8">
+      <div class="mb-8">
        <h2 class="text-2xl font-bold text-slate-800">ฐานข้อมูลผู้ป่วยกรณีศึกษา (Case Study)</h2>
-       <div class="flex gap-3">
-        <button onclick="loadFromSheets()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-bold shadow transition-all flex items-center gap-2 text-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          โหลดจาก Sheets
-        </button>
-        <button onclick="showAddPatientModal()" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg transition-all flex items-center gap-2">เพิ่มผู้ป่วยใหม่</button>
-       </div>
+       <p class="text-slate-500 text-sm mt-1">คลิก "เปิดเวชระเบียน" เพื่อดูข้อมูลละเอียด</p>
       </div>
       <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
-        <table class="w-full text-sm">
-         <thead class="bg-slate-50 border-b border-slate-100">
-          <tr>
-           <th class="text-left px-6 py-4 font-bold text-slate-600">HN</th>
-           <th class="text-left px-6 py-4 font-bold text-slate-600">ชื่อ-นามสกุล (อายุ)</th>
-           <th class="text-left px-6 py-4 font-bold text-slate-600">จัดการ</th>
-          </tr>
-         </thead>
-         <tbody id="patients-table-body" class="divide-y divide-slate-100"></tbody>
-        </table>
+       <table class="w-full text-sm">
+        <thead class="bg-slate-50 border-b border-slate-100">
+         <tr>
+          <th class="text-left px-6 py-4 font-bold text-slate-600">HN</th>
+          <th class="text-left px-6 py-4 font-bold text-slate-600">ชื่อ-นามสกุล (อายุ)</th>
+          <th class="text-left px-6 py-4 font-bold text-slate-600">อาชีพ</th>
+          <th class="text-left px-6 py-4 font-bold text-slate-600">สถานะ</th>
+          <th class="text-left px-6 py-4 font-bold text-slate-600">จัดการ</th>
+         </tr>
+        </thead>
+        <tbody id="patients-table-body" class="divide-y divide-slate-100"></tbody>
+       </table>
       </div>
      </section>
+
     </main>
    </div>
 
-   <!-- Modal รายละเอียดผู้ป่วย / ฟอร์มเพิ่มผู้ป่วย -->
    <div id="patient-modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
     <div class="bg-white rounded-3xl max-w-5xl w-full max-h-[90%] overflow-y-auto shadow-2xl">
      <div class="p-6 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-20">
@@ -108,271 +102,26 @@
     </div>
    </div>
 
-   <!-- Modal ตั้งค่า API -->
-   <div id="settings-modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
-    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl">
-     <div class="p-6 border-b border-slate-100 flex items-center justify-between">
-      <h2 class="text-xl font-bold text-slate-800">⚙️ ตั้งค่าเชื่อมต่อ Google Sheets</h2>
-      <button onclick="closeSettingsModal()" class="p-2 bg-slate-100 hover:bg-rose-100 text-slate-500 hover:text-rose-600 rounded-full transition-all">
-       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-      </button>
-     </div>
-     <div class="p-6 space-y-5">
-       <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
-         <p class="font-bold mb-2">📋 วิธีการตั้งค่า:</p>
-         <ol class="list-decimal list-inside space-y-1 text-xs leading-relaxed">
-           <li>เปิด Google Cloud Console → สร้าง API Key</li>
-           <li>เปิดใช้งาน <strong>Google Sheets API</strong></li>
-           <li>ตั้งค่า API Key ให้จำกัดเฉพาะ Sheets API</li>
-           <li>ตรวจสอบว่า Google Sheets ตั้งเป็น <strong>Public (anyone with link)</strong></li>
-           <li>ใส่ Spreadsheet ID และ API Key ด้านล่าง แล้วกด บันทึก</li>
-         </ol>
-       </div>
-       <div>
-         <label class="block text-xs font-bold text-slate-500 mb-1">Spreadsheet ID</label>
-         <input type="text" id="cfg-sheet-id" placeholder="เช่น 1l1ilgYkK1HV50YC4bAwA4QPGQ1ywWljKg7doQTF55o8" class="w-full p-3 border border-slate-300 rounded-xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-teal-400">
-         <p class="text-xs text-slate-400 mt-1">พบได้ใน URL ของ Google Sheets: .../d/<strong>[ID ที่นี่]</strong>/edit</p>
-       </div>
-       <div>
-         <label class="block text-xs font-bold text-slate-500 mb-1">Google Sheets API Key</label>
-         <input type="password" id="cfg-api-key" placeholder="AIzaSy..." class="w-full p-3 border border-slate-300 rounded-xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-teal-400">
-         <p class="text-xs text-slate-400 mt-1">API Key เก็บใน localStorage ของเบราว์เซอร์เท่านั้น ไม่มีการส่งออกไปที่อื่น</p>
-       </div>
-       <div>
-         <label class="block text-xs font-bold text-slate-500 mb-1">ชื่อ Sheet (Tab)</label>
-         <input type="text" id="cfg-sheet-name" placeholder="Sheet1" class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-400">
-       </div>
-       <button onclick="saveSettings()" class="w-full bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-xl font-bold transition-all">💾 บันทึกการตั้งค่า</button>
-       <button onclick="testConnection()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 p-3 rounded-xl font-bold transition-all text-sm">🔌 ทดสอบการเชื่อมต่อ</button>
-       <div id="test-result" class="hidden p-3 rounded-xl text-sm font-medium"></div>
-     </div>
-    </div>
-   </div>
-
-  </div><!-- end #app -->
+  </div>
 
 <script>
-  // ============================================================
-  // CONFIG — อ่านจาก localStorage (บันทึกผ่านหน้า Settings)
-  // ============================================================
-  function getConfig() {
-    return {
-      sheetId:   localStorage.getItem('ehr_sheet_id')   || '',
-      apiKey:    localStorage.getItem('ehr_api_key')    || '',
-      sheetName: localStorage.getItem('ehr_sheet_name') || 'Sheet1',
-    };
-  }
-
-  function saveSettings() {
-    const sheetId   = document.getElementById('cfg-sheet-id').value.trim();
-    const apiKey    = document.getElementById('cfg-api-key').value.trim();
-    const sheetName = document.getElementById('cfg-sheet-name').value.trim() || 'Sheet1';
-    if (!sheetId || !apiKey) { alert('กรุณากรอก Spreadsheet ID และ API Key ให้ครบ'); return; }
-    localStorage.setItem('ehr_sheet_id',   sheetId);
-    localStorage.setItem('ehr_api_key',    apiKey);
-    localStorage.setItem('ehr_sheet_name', sheetName);
-    updateConnectionStatus(true, 'บันทึกการตั้งค่าแล้ว — กด "โหลดจาก Sheets" เพื่อดึงข้อมูล');
-    closeSettingsModal();
-  }
-
-  function showSettingsModal() {
-    const cfg = getConfig();
-    document.getElementById('cfg-sheet-id').value   = cfg.sheetId;
-    document.getElementById('cfg-api-key').value    = cfg.apiKey;
-    document.getElementById('cfg-sheet-name').value = cfg.sheetName;
-    document.getElementById('test-result').classList.add('hidden');
-    document.getElementById('settings-modal').classList.remove('hidden');
-    document.getElementById('settings-modal').classList.add('flex');
-  }
-
-  function closeSettingsModal() {
-    document.getElementById('settings-modal').classList.add('hidden');
-    document.getElementById('settings-modal').classList.remove('flex');
-  }
-
-  function updateConnectionStatus(ok, msg) {
-    const el = document.getElementById('connection-status');
-    el.innerHTML = `
-      <span class="w-3 h-3 rounded-full ${ok ? 'bg-green-500' : 'bg-red-400'}"></span>
-      <span class="${ok ? 'text-green-700' : 'text-red-600'} text-sm font-medium">${msg}</span>`;
-  }
-
-  // ============================================================
-  // GOOGLE SHEETS REST API — อ่านข้อมูล
-  // ============================================================
-  async function loadFromSheets() {
-    const cfg = getConfig();
-    if (!cfg.sheetId || !cfg.apiKey) {
-      alert('กรุณาตั้งค่า Spreadsheet ID และ API Key ก่อน (กดปุ่ม "ตั้งค่า Sheets")');
-      showSettingsModal();
-      return;
-    }
-
-    updateConnectionStatus(null, 'กำลังเชื่อมต่อ...');
-    const range = encodeURIComponent(`${cfg.sheetName}!A2:AA1000`);
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${cfg.sheetId}/values/${range}?key=${cfg.apiKey}`;
-
-    try {
-      const res = await fetch(url);
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error?.message || `HTTP ${res.status}`);
-      }
-      const data = await res.json();
-      const rows = data.values || [];
-
-      const sheetPatients = rows
-        .filter(r => r[0]) // กรองแถวที่มี HN
-        .map(rowToPatient);
-
-      // รวม: ไม่เพิ่มซ้ำกับ hardcode
-      sheetPatients.forEach(newP => {
-        const isDuplicate = patients.some(p => p.hn === newP.hn);
-        if (!isDuplicate) patients.push(newP);
-        else {
-          // อัปเดตข้อมูลถ้ามีอยู่แล้ว (กรณีแก้ใน Sheets)
-          const idx = patients.findIndex(p => p.hn === newP.hn);
-          if (idx !== -1) patients[idx] = newP;
-        }
-      });
-
-      renderRecentPatients();
-      renderPatientsTable();
-      updateConnectionStatus(true, `เชื่อมต่อสำเร็จ — ดึงข้อมูลจาก Sheets แล้ว ${sheetPatients.length} รายการ`);
-    } catch (e) {
-      updateConnectionStatus(false, `เชื่อมต่อล้มเหลว: ${e.message}`);
-      console.error(e);
-    }
-  }
-
-  async function testConnection() {
-    const sheetId   = document.getElementById('cfg-sheet-id').value.trim();
-    const apiKey    = document.getElementById('cfg-api-key').value.trim();
-    const sheetName = document.getElementById('cfg-sheet-name').value.trim() || 'Sheet1';
-    const resultEl  = document.getElementById('test-result');
-    if (!sheetId || !apiKey) { alert('กรุณากรอกข้อมูลให้ครบก่อน'); return; }
-    resultEl.classList.remove('hidden');
-    resultEl.className = 'p-3 rounded-xl text-sm font-medium bg-yellow-50 text-yellow-700';
-    resultEl.textContent = '⏳ กำลังทดสอบ...';
-
-    const range = encodeURIComponent(`${sheetName}!A1:A1`);
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-    try {
-      const res = await fetch(url);
-      if (!res.ok) { const err = await res.json(); throw new Error(err.error?.message || `HTTP ${res.status}`); }
-      resultEl.className = 'p-3 rounded-xl text-sm font-medium bg-green-50 text-green-700';
-      resultEl.textContent = '✅ เชื่อมต่อสำเร็จ! Google Sheets ตอบกลับแล้ว';
-    } catch(e) {
-      resultEl.className = 'p-3 rounded-xl text-sm font-medium bg-red-50 text-red-700';
-      resultEl.textContent = `❌ ล้มเหลว: ${e.message}`;
-    }
-  }
-
-  // ============================================================
-  // GOOGLE SHEETS REST API — เขียนข้อมูล (append row)
-  // ============================================================
-  async function appendToSheets(patientData) {
-    const cfg = getConfig();
-    if (!cfg.sheetId || !cfg.apiKey) throw new Error('ยังไม่ได้ตั้งค่า API');
-
-    const rowData = [
-      patientData.hn,
-      patientData.name,
-      patientData.age,
-      patientData.phone,
-      patientData.status,
-      patientData.sex,
-      patientData.gender,
-      patientData.occupation,
-      patientData.chiefComplaints,
-      patientData.presentIllness,
-      patientData.allergies,
-      patientData.vitals.bloodPressure,
-      patientData.vitals.heartRate,
-      patientData.vitals.temperature,
-      patientData.vitals.respiratoryRate,
-      patientData.physicalExam,
-      ...patientData.gordonPatterns.map(g => g.notes),
-      patientData.nursingNotes[0]?.note  || '',
-      patientData.nursingNotes[0]?.nurse || '',
-      new Date().toLocaleString('th-TH'),
-    ];
-
-    const range = encodeURIComponent(`${cfg.sheetName}!A:AA`);
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${cfg.sheetId}/values/${range}:append?valueInputOption=USER_ENTERED&key=${cfg.apiKey}`;
-
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ values: [rowData] }),
-    });
-
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error?.message || `HTTP ${res.status}`);
-    }
-    return await res.json();
-  }
-
-  // ============================================================
-  // แปลงแถว Sheets → patient object
-  // ============================================================
-  function rowToPatient(row) {
-    const g = (i) => row[i] || '';
-    // A=HN B=Name C=Age D=Phone E=Status F=Sex G=Gender H=Occupation
-    // I=CC J=PI K=Allergies L=BP M=HR N=BT O=RR P=PhysExam
-    // Q-AA=Gordon1-11 AB=NurseNote AC=NurseName AD=DateTime
-    return {
-      hn:              g(0),
-      name:            g(1),
-      age:             g(2),
-      phone:           g(3),
-      status:          g(4),
-      sex:             g(5),
-      gender:          g(6),
-      occupation:      g(7),
-      chiefComplaints: g(8),
-      presentIllness:  g(9),
-      allergies:       g(10),
-      vitals: {
-        bloodPressure:    g(11),
-        heartRate:        g(12),
-        temperature:      g(13),
-        respiratoryRate:  g(14),
-      },
-      physicalExam: g(15),
-      gordonPatterns: [
-        { name: "1. การรับรู้สุขภาพ", notes: g(16) },
-        { name: "2. โภชนาการ",        notes: g(17) },
-        { name: "3. การขับถ่าย",      notes: g(18) },
-        { name: "4. กิจกรรม",         notes: g(19) },
-        { name: "5. การพักผ่อน",      notes: g(20) },
-        { name: "6. การรับรู้สติ",    notes: g(21) },
-        { name: "7. อัตมโนทัศน์",     notes: g(22) },
-        { name: "8. สัมพันธภาพ",      notes: g(23) },
-        { name: "9. เพศสภาพ",         notes: g(24) },
-        { name: "10. ความทนทานเครียด",notes: g(25) },
-        { name: "11. คุณค่าความเชื่อ",notes: g(26) },
-      ],
-      nursingNotes: [{ date: g(29), note: g(27), nurse: g(28) }],
-    };
-  }
-
-  // ============================================================
-  // ข้อมูล hardcode (กรณีศึกษาตัวอย่าง)
-  // ============================================================
-  let patients = [
+  const patients = [
     {
       hn: "HN-680001", name: "นางจาเนล (Janelle) วันใหม่", age: 45, phone: "081-111-2222", status: "เฝ้าระวัง",
       sex: "Female", gender: "หญิง (Woman)", occupation: "ผู้จัดการฝ่ายบัญชี",
-      chiefComplaints: "ใจสั่น นอนไม่หลับมา 3 วัน ปวดตื้อๆ ท้ายทอย", presentIllness: "เครียดจากงานสะสม นอนวันละ 3-4 ชม.", allergies: "ไม่มี",
+      chiefComplaints: "ใจสั่น นอนไม่หลับมา 3 วัน ปวดตื้อๆ ท้ายทอย",
+      presentIllness: "เครียดจากงานสะสม นอนวันละ 3-4 ชม.", allergies: "ไม่มี",
       vitals: { bloodPressure: "160/95", heartRate: "115", temperature: "37.0", respiratoryRate: "22" },
       physicalExam: "General: หน้าตาดูอิดโรย ขอบตาดำ คลำพบกล้ามเนื้อบ่าและต้นคอตึงตัว (Muscle tension), Heart: Tachycardia, Lung: Clear",
       gordonPatterns: [
-        { name: "1. การรับรู้สุขภาพ", notes: "ละเลยการตรวจสุขภาพประจำปี" }, { name: "2. โภชนาการ", notes: "ดื่มกาแฟวันละ 4 แก้ว กินอาหารจานด่วน" },
-        { name: "3. การขับถ่าย", notes: "ท้องผูก 3 วันถ่ายครั้ง" }, { name: "4. กิจกรรม", notes: "นั่งทำงานหน้าคอมพิวเตอร์วันละ 12 ชม." },
-        { name: "5. การพักผ่อน", notes: "สะดุ้งตื่นตี 2 หลับต่อไม่ได้" }, { name: "6. การรับรู้สติ", notes: "ปวดตื้อท้ายทอยร้าวขึ้นขมับ" },
-        { name: "7. อัตมโนทัศน์", notes: "กังวลว่าทำงานได้แย่ลง" }, { name: "8. สัมพันธภาพ", notes: "โสด ปลีกตัวจากสังคม" },
+        { name: "1. การรับรู้สุขภาพ", notes: "ละเลยการตรวจสุขภาพประจำปี" },
+        { name: "2. โภชนาการ", notes: "ดื่มกาแฟวันละ 4 แก้ว กินอาหารจานด่วน" },
+        { name: "3. การขับถ่าย", notes: "ท้องผูก 3 วันถ่ายครั้ง" },
+        { name: "4. กิจกรรม", notes: "นั่งทำงานหน้าคอมพิวเตอร์วันละ 12 ชม." },
+        { name: "5. การพักผ่อน", notes: "สะดุ้งตื่นตี 2 หลับต่อไม่ได้" },
+        { name: "6. การรับรู้สติ", notes: "ปวดตื้อท้ายทอยร้าวขึ้นขมับ" },
+        { name: "7. อัตมโนทัศน์", notes: "กังวลว่าทำงานได้แย่ลง" },
+        { name: "8. สัมพันธภาพ", notes: "โสด ปลีกตัวจากสังคม" },
         { name: "9. เพศสภาพ", notes: "ระบุเพศหญิง ไม่มีปัญหาด้านอัตลักษณ์ทางเพศ ประจำเดือนมาไม่สม่ำเสมอจากความเครียด" },
         { name: "10. ความทนทานเครียด", notes: "ใช้การทำงานเพื่อหนีความเครียด" },
         { name: "11. คุณค่าความเชื่อ", notes: "เชื่อว่าความสำเร็จในงานคือทุกอย่าง" }
@@ -382,14 +131,19 @@
     {
       hn: "HN-680002", name: "นายไบรอัน (Brian) วิลเคนส์", age: 29, phone: "089-876-5432", status: "วิกฤต",
       sex: "Male", gender: "ชาย (Man)", occupation: "นักศึกษาปริญญาโท",
-      chiefComplaints: "ปวดท้องน้อยด้านขวา (RLQ) รุนแรง อาเจียน", presentIllness: "ปวดมวนรอบสะดือย้ายไปท้องน้อยขวามา 6 ชม.", allergies: "ไม่มี",
+      chiefComplaints: "ปวดท้องน้อยด้านขวา (RLQ) รุนแรง อาเจียน",
+      presentIllness: "ปวดมวนรอบสะดือย้ายไปท้องน้อยขวามา 6 ชม.", allergies: "ไม่มี",
       vitals: { bloodPressure: "120/80", heartRate: "105", temperature: "38.2", respiratoryRate: "20" },
       physicalExam: "Abdomen: Guarding and Rigidity at RLQ, Positive Rebound tenderness, Bowel sound: Hyperactive",
       gordonPatterns: [
-        { name: "1. การรับรู้สุขภาพ", notes: "ปกติแข็งแรงดี มารพ.เมื่อปวดมาก" }, { name: "2. โภชนาการ", notes: "เบื่ออาหาร อาเจียน 2 ครั้ง" },
-        { name: "3. การขับถ่าย", notes: "ปกติ ไม่พบท้องเสีย" }, { name: "4. กิจกรรม", notes: "นอนงอตัว กุมท้อง ขยับตัวลำบาก" },
-        { name: "5. การพักผ่อน", notes: "ไม่ได้นอนเพราะปวดท้อง" }, { name: "6. การรับรู้สติ", notes: "Pain score 8/10, Rebound tenderness +" },
-        { name: "7. อัตมโนทัศน์", notes: "กังวลเรื่องการผ่าตัด" }, { name: "8. สัมพันธภาพ", notes: "เพื่อนร่วมหอพักพามาส่ง" },
+        { name: "1. การรับรู้สุขภาพ", notes: "ปกติแข็งแรงดี มารพ.เมื่อปวดมาก" },
+        { name: "2. โภชนาการ", notes: "เบื่ออาหาร อาเจียน 2 ครั้ง" },
+        { name: "3. การขับถ่าย", notes: "ปกติ ไม่พบท้องเสีย" },
+        { name: "4. กิจกรรม", notes: "นอนงอตัว กุมท้อง ขยับตัวลำบาก" },
+        { name: "5. การพักผ่อน", notes: "ไม่ได้นอนเพราะปวดท้อง" },
+        { name: "6. การรับรู้สติ", notes: "Pain score 8/10, Rebound tenderness +" },
+        { name: "7. อัตมโนทัศน์", notes: "กังวลเรื่องการผ่าตัด" },
+        { name: "8. สัมพันธภาพ", notes: "เพื่อนร่วมหอพักพามาส่ง" },
         { name: "9. เพศสภาพ", notes: "ระบุเพศชาย ไม่มีปัญหาด้านอัตลักษณ์ทางเพศ" },
         { name: "10. ความทนทานเครียด", notes: "ร้องโอดครวญจากความปวด" },
         { name: "11. คุณค่าความเชื่อ", notes: "ยินยอมรักษาทุกวิธี" }
@@ -399,14 +153,19 @@
     {
       hn: "HN-680003", name: "นางสมศรี มีสุข", age: 62, phone: "082-222-3333", status: "เฝ้าระวัง",
       sex: "Female", gender: "หญิง (Woman)", occupation: "แม่บ้าน / เกษียณ",
-      chiefComplaints: "น้ำตาลในเลือดสูง อ่อนเพลีย ปัสสาวะบ่อย", presentIllness: "เบาหวานเดิม คุมอาหารไม่ได้มา 1 เดือน", allergies: "ยาซัลฟา",
+      chiefComplaints: "น้ำตาลในเลือดสูง อ่อนเพลีย ปัสสาวะบ่อย",
+      presentIllness: "เบาหวานเดิม คุมอาหารไม่ได้มา 1 เดือน", allergies: "ยาซัลฟา",
       vitals: { bloodPressure: "145/90", heartRate: "88", temperature: "36.5", respiratoryRate: "18" },
       physicalExam: "Extremities: ปลายเท้าชาทั้ง 2 ข้าง, พบแผลกดทับที่ส้นเท้าซ้ายขนาด 1 ซม. แผลแห้ง, Skin: Dry and poor turgor",
       gordonPatterns: [
-        { name: "1. การรับรู้สุขภาพ", notes: "กินยาไม่สม่ำเสมอ" }, { name: "2. โภชนาการ", notes: "ชอบขนมหวานและผลไม้รสหวาน" },
-        { name: "3. การขับถ่าย", notes: "ปัสสาวะบ่อยคืนละ 4-5 ครั้ง" }, { name: "4. กิจกรรม", notes: "เหนื่อยง่ายเวลาเดินไกล" },
-        { name: "5. การพักผ่อน", notes: "นอนไม่หลับเพราะลุกมาปัสสาวะ" }, { name: "6. การรับรู้สติ", notes: "ปกติ ถามตอบรู้เรื่อง" },
-        { name: "7. อัตมโนทัศน์", notes: "เบื่อหน่ายที่ต้องกินยาตลอดชีวิต" }, { name: "8. สัมพันธภาพ", notes: "อาศัยอยู่กับลูกหลาน" },
+        { name: "1. การรับรู้สุขภาพ", notes: "กินยาไม่สม่ำเสมอ" },
+        { name: "2. โภชนาการ", notes: "ชอบขนมหวานและผลไม้รสหวาน" },
+        { name: "3. การขับถ่าย", notes: "ปัสสาวะบ่อยคืนละ 4-5 ครั้ง" },
+        { name: "4. กิจกรรม", notes: "เหนื่อยง่ายเวลาเดินไกล" },
+        { name: "5. การพักผ่อน", notes: "นอนไม่หลับเพราะลุกมาปัสสาวะ" },
+        { name: "6. การรับรู้สติ", notes: "ปกติ ถามตอบรู้เรื่อง" },
+        { name: "7. อัตมโนทัศน์", notes: "เบื่อหน่ายที่ต้องกินยาตลอดชีวิต" },
+        { name: "8. สัมพันธภาพ", notes: "อาศัยอยู่กับลูกหลาน" },
         { name: "9. เพศสภาพ", notes: "ระบุเพศหญิง หมดประจำเดือนแล้ว ไม่มีปัญหาด้านอัตลักษณ์ทางเพศ" },
         { name: "10. ความทนทานเครียด", notes: "วิตกกังวลเรื่องแผลที่เท้า" },
         { name: "11. คุณค่าความเชื่อ", notes: "ทำบุญตักบาตรทุกเช้า" }
@@ -416,14 +175,19 @@
     {
       hn: "HN-680006", name: "นายสมปอง น้องพี่", age: 35, phone: "081-333-4444", status: "เฝ้าระวัง",
       sex: "Male", gender: "ชาย (Man)", occupation: "พนักงานบริษัทเอกชน",
-      chiefComplaints: "ไข้สูง ไอแห้ง เจ็บคอ ปวดเมื่อยตัว", presentIllness: "เป็นไข้มา 2 วัน ตรวจ ATK ผลลบ", allergies: "ไม่มี",
+      chiefComplaints: "ไข้สูง ไอแห้ง เจ็บคอ ปวดเมื่อยตัว",
+      presentIllness: "เป็นไข้มา 2 วัน ตรวจ ATK ผลลบ", allergies: "ไม่มี",
       vitals: { bloodPressure: "122/82", heartRate: "96", temperature: "38.9", respiratoryRate: "20" },
       physicalExam: "HEENT: Pharynx and Tonsils injected (แดง), No exudate, Lymph nodes: Submandibular enlarged",
       gordonPatterns: [
-        { name: "1. การรับรู้สุขภาพ", notes: "ซื้อยาลดไข้กินเองแต่ไม่ดีขึ้น" }, { name: "2. โภชนาการ", notes: "ดื่มน้ำน้อย กลืนลำบาก" },
-        { name: "3. การขับถ่าย", notes: "ปัสสาวะสีเหลืองเข้ม" }, { name: "4. กิจกรรม", notes: "อ่อนเพลีย ขาดแรงจูงใจ" },
-        { name: "5. การพักผ่อน", notes: "หนาวสั่นจนนอนไม่หลับ" }, { name: "6. การรับรู้สติ", notes: "เพลีย มึนศีรษะ" },
-        { name: "7. อัตมโนทัศน์", notes: "กังวลว่าจะติดเชื้อรุนแรง" }, { name: "8. สัมพันธภาพ", notes: "พักอยู่คนเดียว" },
+        { name: "1. การรับรู้สุขภาพ", notes: "ซื้อยาลดไข้กินเองแต่ไม่ดีขึ้น" },
+        { name: "2. โภชนาการ", notes: "ดื่มน้ำน้อย กลืนลำบาก" },
+        { name: "3. การขับถ่าย", notes: "ปัสสาวะสีเหลืองเข้ม" },
+        { name: "4. กิจกรรม", notes: "อ่อนเพลีย ขาดแรงจูงใจ" },
+        { name: "5. การพักผ่อน", notes: "หนาวสั่นจนนอนไม่หลับ" },
+        { name: "6. การรับรู้สติ", notes: "เพลีย มึนศีรษะ" },
+        { name: "7. อัตมโนทัศน์", notes: "กังวลว่าจะติดเชื้อรุนแรง" },
+        { name: "8. สัมพันธภาพ", notes: "พักอยู่คนเดียว" },
         { name: "9. เพศสภาพ", notes: "ระบุเพศชาย ไม่มีปัญหาด้านอัตลักษณ์ทางเพศ" },
         { name: "10. ความทนทานเครียด", notes: "หงุดหงิดจากการเจ็บป่วย" },
         { name: "11. คุณค่าความเชื่อ", notes: "ปกติ" }
@@ -433,7 +197,9 @@
     {
       hn: "HN-680010", name: "นายต้นกล้า รักสุข", age: 38, phone: "081-000-1111", status: "เฝ้าระวัง",
       sex: "Male", gender: "ชาย (Man)", occupation: "พนักงานโรงงานอุตสาหกรรม",
-      chiefComplaints: "หายใจเหนื่อยหอบ แน่นหน้าอก มีเสียงหวีด (Wheezing) มา 1 วัน", presentIllness: "ประวัติโรคหืด สัมผัสควันบุหรี่และฝุ่นในโรงงานมา 3 วัน อาการกำเริบในคืนที่ผ่านมา ใช้ยาพ่นเองแล้วไม่ดีขึ้น", allergies: "ฝุ่น, ควันบุหรี่, NSAIDs",
+      chiefComplaints: "หายใจเหนื่อยหอบ แน่นหน้าอก มีเสียงหวีด (Wheezing) มา 1 วัน",
+      presentIllness: "ประวัติโรคหืด สัมผัสควันบุหรี่และฝุ่นในโรงงานมา 3 วัน อาการกำเริบในคืนที่ผ่านมา ใช้ยาพ่นเองแล้วไม่ดีขึ้น",
+      allergies: "ฝุ่น, ควันบุหรี่, NSAIDs",
       vitals: { bloodPressure: "138/88", heartRate: "112", temperature: "37.4", respiratoryRate: "28" },
       physicalExam: "General: นั่งพิงไม่ยอมนอนราบ (Orthopnea), ใช้กล้ามเนื้อช่วยหายใจ (Accessory muscle use), Lung: Expiratory wheezing both lungs, Prolonged expiration, Chest: Mild intercostal retraction, Heart: Tachycardia, SpO2: 93% on room air",
       gordonPatterns: [
@@ -453,26 +219,40 @@
     }
   ];
 
-  // ============================================================
-  // UI Render Functions
-  // ============================================================
-  function renderRecentPatients() {
-    const container = document.getElementById('recent-patients');
-    container.innerHTML = patients.slice(0, 5).map(p => `
+  function renderDashboard() {
+    document.getElementById('dash-count').innerText    = patients.length;
+    document.getElementById('dash-critical').innerText = patients.filter(p => p.status === 'วิกฤต').length;
+    document.getElementById('dash-watch').innerText    = patients.filter(p => p.status === 'เฝ้าระวัง').length;
+    document.getElementById('dash-normal').innerText   = patients.filter(p => p.status === 'ปกติ').length;
+
+    document.getElementById('recent-patients').innerHTML = patients.map(p => `
       <div class="patient-card flex items-center justify-between p-5 bg-slate-50 rounded-2xl cursor-pointer border border-slate-100 hover:bg-white hover:shadow-md transition-all" onclick="showPatientDetail('${p.hn}')">
-        <div><p class="font-bold text-slate-800 text-lg">${p.name}</p><p class="text-sm text-teal-600 font-mono">${p.hn} | อายุ ${p.age} ปี</p></div>
-        <span class="px-4 py-1.5 rounded-full ${p.status === 'วิกฤต' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'} font-bold text-xs">${p.status}</span>
+        <div>
+          <p class="font-bold text-slate-800 text-lg">${p.name}</p>
+          <p class="text-sm text-teal-600 font-mono">${p.hn} | อายุ ${p.age} ปี | ${p.occupation}</p>
+        </div>
+        <span class="px-4 py-1.5 rounded-full font-bold text-xs ${
+          p.status === 'วิกฤต' ? 'bg-red-100 text-red-700' :
+          p.status === 'เฝ้าระวัง' ? 'bg-amber-100 text-amber-700' : 'bg-green-100 text-green-700'
+        }">${p.status}</span>
       </div>`).join('');
-    document.getElementById('dash-count').innerText = patients.length;
   }
 
   function renderPatientsTable() {
-    const tbody = document.getElementById('patients-table-body');
-    tbody.innerHTML = patients.map(p => `
+    document.getElementById('patients-table-body').innerHTML = patients.map(p => `
       <tr class="hover:bg-slate-50/50">
-        <td class="px-6 py-4 font-mono text-teal-600 font-bold">${p.hn}</td>
+        <td class="px-6 py-4 font-mono text-teal-600 font-bold text-sm">${p.hn}</td>
         <td class="px-6 py-4 font-bold text-slate-800">${p.name} (${p.age} ปี)</td>
-        <td class="px-6 py-4"><button onclick="showPatientDetail('${p.hn}')" class="text-teal-600 font-bold border-2 border-teal-500 px-4 py-1.5 rounded-xl hover:bg-teal-500 hover:text-white transition-all text-sm">เปิดเวชระเบียน</button></td>
+        <td class="px-6 py-4 text-slate-600 text-sm">${p.occupation}</td>
+        <td class="px-6 py-4">
+          <span class="px-3 py-1 rounded-full font-bold text-xs ${
+            p.status === 'วิกฤต' ? 'bg-red-100 text-red-700' :
+            p.status === 'เฝ้าระวัง' ? 'bg-amber-100 text-amber-700' : 'bg-green-100 text-green-700'
+          }">${p.status}</span>
+        </td>
+        <td class="px-6 py-4">
+          <button onclick="showPatientDetail('${p.hn}')" class="text-teal-600 font-bold border-2 border-teal-500 px-4 py-1.5 rounded-xl hover:bg-teal-500 hover:text-white transition-all text-sm">เปิดเวชระเบียน</button>
+        </td>
       </tr>`).join('');
   }
 
@@ -483,58 +263,58 @@
     document.getElementById(`btn-${section}`).classList.add('active');
   }
 
-  function closeModal() { 
-    document.getElementById('patient-modal').classList.add('hidden'); 
-    document.getElementById('patient-modal').classList.remove('flex'); 
+  function closeModal() {
+    document.getElementById('patient-modal').classList.add('hidden');
+    document.getElementById('patient-modal').classList.remove('flex');
   }
 
   function showPatientDetail(hn) {
     const p = patients.find(x => x.hn === hn);
     document.getElementById('modal-title').innerText = "KMITL Smart EHR: " + p.name;
-    const content = document.getElementById('patient-modal-content');
-    content.innerHTML = `
+    document.getElementById('patient-modal-content').innerHTML = `
       <div class="space-y-8">
-        <!-- ข้อมูลพื้นฐาน -->
         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">เพศกำเนิด (Sex)</p><p class="font-bold text-slate-800 text-sm">${p.sex || '-'}</p></div>
           <div><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">เพศสภาพ (Gender)</p><p class="font-bold text-slate-800 text-sm">${p.gender || '-'}</p></div>
-          <div class="md:col-span-2"><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">อาชีพ (Occupation)</p><p class="font-bold text-slate-800 text-sm">${p.occupation || '-'}</p></div>
+          <div><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">อาชีพ (Occupation)</p><p class="font-bold text-slate-800 text-sm">${p.occupation || '-'}</p></div>
+          <div><p class="text-[10px] font-bold text-slate-400 uppercase mb-1">แพ้ยา (Allergy)</p><p class="font-bold text-red-600 text-sm">${p.allergies || 'ไม่มี'}</p></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="bg-red-50 p-6 rounded-2xl border border-red-100 shadow-sm">
-             <h4 class="text-red-800 font-bold mb-2 uppercase text-xs tracking-widest">Chief Complaint</h4>
-             <p class="text-red-600 font-bold text-xl">${p.chiefComplaints}</p>
+            <h4 class="text-red-800 font-bold mb-2 uppercase text-xs tracking-widest">Chief Complaint</h4>
+            <p class="text-red-600 font-bold text-xl">${p.chiefComplaints}</p>
+            <p class="text-slate-600 text-sm mt-3 leading-relaxed">${p.presentIllness}</p>
           </div>
           <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 shadow-sm">
-             <h4 class="text-blue-800 font-bold mb-4 uppercase text-xs tracking-widest">Vital Signs</h4>
-             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                <div class="bg-white p-2 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">BP</p><p class="font-black text-slate-800">${p.vitals.bloodPressure}</p></div>
-                <div class="bg-white p-2 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">HR</p><p class="font-black text-slate-800">${p.vitals.heartRate}</p></div>
-                <div class="bg-white p-2 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">BT</p><p class="font-black text-slate-800">${p.vitals.temperature}</p></div>
-                <div class="bg-white p-2 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">RR</p><p class="font-black text-slate-800">${p.vitals.respiratoryRate}</p></div>
-             </div>
+            <h4 class="text-blue-800 font-bold mb-4 uppercase text-xs tracking-widest">Vital Signs</h4>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <div class="bg-white p-3 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">BP</p><p class="font-black text-slate-800 text-lg">${p.vitals.bloodPressure}</p></div>
+              <div class="bg-white p-3 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">HR</p><p class="font-black text-slate-800 text-lg">${p.vitals.heartRate}</p></div>
+              <div class="bg-white p-3 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">BT</p><p class="font-black text-slate-800 text-lg">${p.vitals.temperature}</p></div>
+              <div class="bg-white p-3 rounded-xl text-center shadow-sm"><p class="text-[10px] text-slate-400 font-bold">RR</p><p class="font-black text-slate-800 text-lg">${p.vitals.respiratoryRate}</p></div>
+            </div>
           </div>
         </div>
         <div class="bg-orange-50 p-6 rounded-2xl border border-orange-200 shadow-sm">
-           <h4 class="text-[#E35205] font-bold mb-2 uppercase text-xs tracking-widest">Physical Examination (ผลการตรวจร่างกาย)</h4>
-           <p class="text-slate-700 font-medium">${p.physicalExam || "ไม่มีข้อมูล"}</p>
+          <h4 class="text-[#E35205] font-bold mb-2 uppercase text-xs tracking-widest">Physical Examination</h4>
+          <p class="text-slate-700 font-medium leading-relaxed">${p.physicalExam || "ไม่มีข้อมูล"}</p>
         </div>
         <div>
           <h4 class="text-indigo-800 font-bold mb-4 text-lg">Gordon's Functional Health Patterns</h4>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-             ${p.gordonPatterns.map((g, i) => `
-             <div class="p-4 bg-white border border-slate-200 rounded-2xl hover:border-indigo-400 transition-all shadow-sm">
-                <p class="font-bold text-slate-800 text-sm mb-1">${g.name || 'แบบแผนที่ ' + (i+1)}</p>
-                <p class="text-sm text-slate-600 leading-relaxed font-medium">${g.notes || "-"}</p>
-             </div>`).join('')}
+            ${p.gordonPatterns.map(g => `
+            <div class="p-4 bg-white border border-slate-200 rounded-2xl hover:border-indigo-400 transition-all shadow-sm">
+              <p class="font-bold text-slate-800 text-sm mb-1">${g.name}</p>
+              <p class="text-sm text-slate-600 leading-relaxed">${g.notes || "-"}</p>
+            </div>`).join('')}
           </div>
         </div>
         <div class="bg-cyan-50 p-6 rounded-2xl border border-cyan-200 shadow-sm">
           <h4 class="text-cyan-800 font-bold mb-4 uppercase text-xs">Nursing Progress Notes</h4>
           ${p.nursingNotes.map(n => `
             <div class="bg-white p-4 rounded-xl border border-cyan-100 mb-2 flex gap-4">
-               <div class="bg-cyan-600 p-2 rounded-lg text-white font-bold text-[10px] h-fit">${n.date}</div>
-               <div><p class="font-bold text-slate-800">${n.note}</p><p class="text-xs text-cyan-600 mt-1">บันทึกโดย: ${n.nurse}</p></div>
+              <div class="bg-cyan-600 p-2 rounded-lg text-white font-bold text-[10px] h-fit whitespace-nowrap">${n.date}</div>
+              <div><p class="font-bold text-slate-800">${n.note}</p><p class="text-xs text-cyan-600 mt-1">บันทึกโดย: ${n.nurse}</p></div>
             </div>`).join('')}
         </div>
       </div>`;
@@ -542,115 +322,21 @@
     document.getElementById('patient-modal').classList.add('flex');
   }
 
-  function showAddPatientModal() {
-    document.getElementById('modal-title').innerText = "สร้างกรณีศึกษาใหม่";
-    const nextId = "HN-68" + (patients.length + 1).toString().padStart(4, '0');
-    const content = document.getElementById('patient-modal-content');
-    content.innerHTML = `
-      <div id="add-form" class="space-y-8">
-        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div><label class="block text-xs font-bold text-slate-500 mb-1">HN</label><input type="text" id="n-hn" value="${nextId}" disabled class="w-full p-2 bg-slate-200 border rounded font-mono text-sm"></div>
-          <div class="md:col-span-2"><label class="block text-xs font-bold text-slate-500 mb-1">ชื่อ-นามสกุล</label><input type="text" id="n-name" required class="w-full p-2 border rounded shadow-sm text-sm"></div>
-          <div><label class="block text-xs font-bold text-slate-500 mb-1">อายุ</label><input type="number" id="n-age" required class="w-full p-2 border rounded shadow-sm text-sm"></div>
-          <div><label class="block text-xs font-bold text-slate-500 mb-1">เพศกำเนิด (Sex)</label>
-            <select id="n-sex" class="w-full p-2 border rounded shadow-sm text-sm">
-              <option value="Male">Male (ชาย)</option>
-              <option value="Female">Female (หญิง)</option>
-              <option value="Intersex">Intersex</option>
-            </select>
-          </div>
-          <div><label class="block text-xs font-bold text-slate-500 mb-1">เพศสภาพ (Gender)</label><input type="text" id="n-gender" placeholder="เช่น หญิง (Woman), Non-binary" class="w-full p-2 border rounded shadow-sm text-sm"></div>
-          <div class="md:col-span-2"><label class="block text-xs font-bold text-slate-500 mb-1">อาชีพ (Occupation)</label><input type="text" id="n-occupation" placeholder="เช่น พยาบาล, นักเรียน, เกษตรกร" class="w-full p-2 border rounded shadow-sm text-sm"></div>
-          <div class="md:col-span-3"><label class="block text-xs font-bold text-slate-500 mb-1">อาการสำคัญ (CC)</label><input type="text" id="n-cc" required class="w-full p-2 border rounded shadow-sm text-sm"></div>
-        </div>
-        <div class="bg-orange-50 p-6 rounded-2xl border border-orange-200">
-           <h4 class="font-bold text-[#E35205] mb-2 uppercase text-xs">Physical Examination (การตรวจร่างกาย)</h4>
-           <textarea id="n-pe" placeholder="ระบุข้อมูลการตรวจร่างกาย..." class="w-full p-2 border rounded shadow-sm h-24 text-sm"></textarea>
-        </div>
-        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100"><h4 class="font-bold text-blue-800 mb-4 uppercase text-xs">Vital Signs</h4><div class="grid grid-cols-2 md:grid-cols-4 gap-4"><input type="text" id="n-bp" placeholder="BP" class="p-2 border rounded text-center text-sm"><input type="text" id="n-hr" placeholder="HR" class="p-2 border rounded text-center text-sm"><input type="text" id="n-bt" placeholder="BT" class="p-2 border rounded text-center text-sm"><input type="text" id="n-rr" placeholder="RR" class="p-2 border rounded text-center text-sm"></div></div>
-        <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100"><h4 class="font-bold text-indigo-800 mb-4 uppercase text-xs">11 แบบแผนของกอร์ดอน</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-3">${["การรับรู้สุขภาพ","โภชนาการ","การขับถ่าย","กิจกรรม","การพักผ่อน","การรับรู้สติ","อัตมโนทัศน์","สัมพันธภาพ","เพศ","ความทนทานเครียด","คุณค่าความเชื่อ"].map((name, i) => `<div><label class="block text-[10px] font-black text-indigo-600 mb-1">${i+1}. ${name}</label><input type="text" id="g${i+1}" class="w-full p-2 border rounded text-xs shadow-sm"></div>`).join('')}</div></div>
-        <div class="bg-cyan-50 p-6 rounded-2xl border border-cyan-100"><h4 class="font-bold text-cyan-800 mb-4 uppercase text-xs">Nurse's Note</h4><div class="grid grid-cols-1 md:grid-cols-4 gap-4"><input type="text" id="n-nurse" placeholder="ชื่อพยาบาล" class="p-2 border rounded shadow-sm text-sm"><textarea id="n-note" placeholder="บันทึก..." class="md:col-span-3 p-2 border rounded shadow-sm h-24 text-sm"></textarea></div></div>
-        <button onclick="submitNewPatient()" id="save-btn" class="w-full bg-[#E35205] text-white p-4 rounded-2xl font-black text-lg shadow-xl hover:bg-[#c44604] transition-all">บันทึกกรณีศึกษา</button>
-      </div>`;
-    document.getElementById('patient-modal').classList.remove('hidden');
-    document.getElementById('patient-modal').classList.add('flex');
-  }
-
-  async function submitNewPatient() {
-    const btn = document.getElementById('save-btn');
-    const name = document.getElementById('n-name').value.trim();
-    const age  = document.getElementById('n-age').value.trim();
-    const cc   = document.getElementById('n-cc').value.trim();
-    if (!name || !age || !cc) { alert('กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, อายุ, CC)'); return; }
-
-    const gNames = ["การรับรู้สุขภาพ","โภชนาการ","การขับถ่าย","กิจกรรม","การพักผ่อน","การรับรู้สติ","อัตมโนทัศน์","สัมพันธภาพ","เพศ","ความทนทานเครียด","คุณค่าความเชื่อ"];
-    const newP = {
-      hn: document.getElementById('n-hn').value,
-      name, age,
-      phone: "08x-xxx-xxxx",
-      status: "เฝ้าระวัง",
-      sex:        document.getElementById('n-sex').value,
-      gender:     document.getElementById('n-gender').value,
-      occupation: document.getElementById('n-occupation').value,
-      chiefComplaints: cc,
-      presentIllness: "-",
-      allergies: "-",
-      physicalExam: document.getElementById('n-pe').value,
-      vitals: {
-        bloodPressure:   document.getElementById('n-bp').value,
-        heartRate:       document.getElementById('n-hr').value,
-        temperature:     document.getElementById('n-bt').value,
-        respiratoryRate: document.getElementById('n-rr').value,
-      },
-      gordonPatterns: gNames.map((n, i) => ({ name: (i+1) + ". " + n, notes: document.getElementById(`g${i+1}`).value || "-" })),
-      nursingNotes: [{ date: new Date().toLocaleString('th-TH'), note: document.getElementById('n-note').value, nurse: document.getElementById('n-nurse').value }],
-    };
-
-    const cfg = getConfig();
-    if (cfg.sheetId && cfg.apiKey) {
-      btn.innerText = "กำลังบันทึกลง Google Sheets...";
-      btn.disabled = true;
-      try {
-        await appendToSheets(newP);
-        patients.push(newP);
-        renderRecentPatients();
-        renderPatientsTable();
-        closeModal();
-        updateConnectionStatus(true, `บันทึกสำเร็จ — เพิ่ม ${newP.name} ลง Google Sheets แล้ว`);
-      } catch(e) {
-        btn.innerText = "บันทึกกรณีศึกษา";
-        btn.disabled = false;
-        alert(`บันทึกลง Sheets ล้มเหลว: ${e.message}\n\nกรุณาตรวจสอบ API Key และ Spreadsheet permissions`);
-      }
-    } else {
-      // ไม่มี API Key → บันทึกเฉพาะใน memory
-      patients.push(newP);
-      renderRecentPatients();
-      renderPatientsTable();
-      closeModal();
-      alert('บันทึกสำเร็จ (เฉพาะหน้านี้ — ยังไม่ได้ตั้งค่า Sheets API)');
-    }
-  }
-
-  // สั่งเริ่มทำงาน
-  renderRecentPatients();
+  renderDashboard();
   renderPatientsTable();
-  // ถ้ามีการตั้งค่าไว้แล้ว แสดงสถานะ
-  const cfg = getConfig();
-  if (cfg.apiKey) updateConnectionStatus(true, 'พบการตั้งค่า API — กด "โหลดจาก Sheets" เพื่อดึงข้อมูล');
 </script>
 
 <footer class="bg-slate-800 text-slate-400 py-8 px-6 w-full border-t border-slate-700">
-   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-    <div class="text-center md:text-left">
-     <p class="font-bold text-slate-200 text-lg tracking-wide">NS KMITL Smart EHR System</p>
-     <p class="text-sm opacity-80">School of Nursing, King Mongkut's Institute of Technology Ladkrabang</p>
-    </div>
-    <div class="text-center md:text-right border-t md:border-t-0 border-slate-700 pt-4 md:pt-0 w-full md:w-auto">
-     <p class="text-base font-medium">Created by <span class="text-orange-500 font-bold">Aj. Paranee Jiratheerarat</span></p>
-     <p class="text-[10px] mt-2 text-slate-500 uppercase tracking-widest">© 2026 All Rights Reserved. Innovation for Nurse Education.</p>
-    </div>
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+   <div class="text-center md:text-left">
+    <p class="font-bold text-slate-200 text-lg tracking-wide">NS KMITL Smart EHR System</p>
+    <p class="text-sm opacity-80">School of Nursing, King Mongkut's Institute of Technology Ladkrabang</p>
    </div>
+   <div class="text-center md:text-right border-t md:border-t-0 border-slate-700 pt-4 md:pt-0 w-full md:w-auto">
+    <p class="text-base font-medium">Created by <span class="text-orange-500 font-bold">Aj. Paranee Jiratheerarat</span></p>
+    <p class="text-[10px] mt-2 text-slate-500 uppercase tracking-widest">© 2026 All Rights Reserved. Innovation for Nurse Education.</p>
+   </div>
+  </div>
 </footer>
 
  </body>
